@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:weather_app/commons/enums.dart';
+import 'package:weather_app/features/pick_place/presentation/city_cubit.dart';
 
 import 'injection.dart';
 
@@ -15,23 +17,28 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        useMaterial3: true,
-        textTheme: GoogleFonts.poppinsTextTheme(),
-        progressIndicatorTheme: ProgressIndicatorThemeData(
-          color: Colors.white,
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(create: (context) => locator<CityCubit>())
+      ],
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        theme: ThemeData(
+          useMaterial3: true,
+          textTheme: GoogleFonts.poppinsTextTheme(),
+          progressIndicatorTheme: ProgressIndicatorThemeData(
+            color: Colors.white,
+          ),
         ),
+        initialRoute: '/',
+        routes: {
+          '/': (context) => Scaffold(),
+          AppRoute.pickPlace.name: (context) => Scaffold(),
+          AppRoute.hourlyForecast.name: (context) => Scaffold(),
+        },
+        title: 'Flutter Demo',
+        home: MyHomePage(title: 'Flutter Demo Home Page'),
       ),
-      initialRoute: '/',
-      routes: {
-        '/': (context) => Scaffold(),
-        AppRoute.pickPlace.name: (context) => Scaffold(),
-        AppRoute.hourlyForecast.name: (context) => Scaffold(),
-      },
-      title: 'Flutter Demo',
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
     );
   }
 }
@@ -64,7 +71,6 @@ class _MyHomePageState extends State<MyHomePage> {
         title: Text(widget.title),
       ),
       body: Center(
-
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
