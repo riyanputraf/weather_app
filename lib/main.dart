@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:weather_app/commons/enums.dart';
-import 'package:weather_app/features/pick_place/presentation/city_cubit.dart';
+import 'package:weather_app/features/pick_place/presentation/cubit/city_cubit.dart';
+import 'package:weather_app/features/pick_place/presentation/pages/pick_place_page.dart';
 
 import 'injection.dart';
 
@@ -32,7 +33,7 @@ class MyApp extends StatelessWidget {
         ),
         initialRoute: '/',
         routes: {
-          '/': (context) => Scaffold(),
+          '/': (context) => PickPlacePage(),
           AppRoute.pickPlace.name: (context) => Scaffold(),
           AppRoute.hourlyForecast.name: (context) => Scaffold(),
         },

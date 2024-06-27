@@ -1,7 +1,7 @@
 import 'package:get_it/get_it.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:weather_app/commons/app_session.dart';
-import 'package:weather_app/features/pick_place/presentation/city_cubit.dart';
+import 'package:weather_app/features/pick_place/presentation/cubit/city_cubit.dart';
 
 final locator = GetIt.instance;
 
